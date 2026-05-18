@@ -67,7 +67,6 @@ app = FastAPI(
     description="Cinematic AI Operating System — Realtime Gateway",
     version="0.3.0",
     lifespan=lifespan,
-    default_response_class=None,
 )
 
 settings = get_settings()

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Rocket } from 'lucide-react';
 import { useAetherStore } from '@/store/aether-store';
@@ -8,7 +9,16 @@ import { API_URL } from '@/lib/utils';
 export function StatusBar() {
   const { connected, telemetry, aiStreaming, demoRunning, demoStep, setActiveScreen } = useAetherStore();
 
-  const time = new Date().toLocaleTimeString('en-US', { hour12: false });
+  const [time, setTime] = useState<string>('');
+
+  useEffect(() => {
+    setTime(new Date().toLocaleTimeString('en-US', { hour12: false }));
+    const timer = setInterval(() => {
+      setTime(new Date().toLocaleTimeString('en-US', { hour12: false }));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   const cpu = telemetry?.cpu?.percent ?? 0;
   const mem = telemetry?.memory?.percent ?? 0;
 

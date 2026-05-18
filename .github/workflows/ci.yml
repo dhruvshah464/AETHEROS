@@ -12,6 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -29,10 +31,7 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: |
-          echo "setuptools<70.0.0" > /tmp/constraints.txt
-          export PIP_CONSTRAINT=/tmp/constraints.txt
           cd apps/api
-          python -m pip install --upgrade pip setuptools wheel
           pip install -r requirements.txt
       - name: Install test deps
         run: pip install pytest prometheus-client python-jose
