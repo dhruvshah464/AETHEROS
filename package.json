@@ -1,0 +1,31 @@
+{
+  "name": "aetheros",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AetherOS — Cinematic AI Operating Interface. Iron Man HUD meets production-grade agent infrastructure.",
+  "license": "MIT",
+  "author": "AetherOS Contributors",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "dev:web": "turbo run dev --filter=@aetheros/web",
+    "dev:api": "cd apps/api && uvicorn main:app --reload --host 0.0.0.0 --port 8000",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
+    "docker:up": "docker compose -f infra/docker-compose.yml up -d",
+    "docker:down": "docker compose -f infra/docker-compose.yml down",
+    "setup": "pnpm install && cd apps/api && pip install -r requirements.txt"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}

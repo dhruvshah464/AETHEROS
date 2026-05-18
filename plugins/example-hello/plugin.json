@@ -1,0 +1,8 @@
+{
+  "id": "example-hello",
+  "name": "Hello Tool",
+  "version": "1.0.0",
+  "type": "tool",
+  "description": "Example AetherOS plugin — greets the operator",
+  "author": "AetherOS"
+}

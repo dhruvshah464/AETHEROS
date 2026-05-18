@@ -1,0 +1,30 @@
+api:
+  replicaCount: 2
+  image:
+    repository: aetheros/api
+    tag: "0.3.0"
+  service:
+    port: 8000
+  env:
+    REDIS_URL: redis://aetheros-redis:6379/0
+
+web:
+  replicaCount: 2
+  image:
+    repository: aetheros/web
+    tag: "0.3.0"
+  service:
+    port: 3000
+
+redis:
+  enabled: true
+
+postgres:
+  enabled: true
+
+chroma:
+  enabled: true
+
+ingress:
+  enabled: false
+  host: aetheros.local

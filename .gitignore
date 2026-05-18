@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Build
+.next/
+dist/
+build/
+.turbo/
+out/
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Testing
+coverage/
+.pytest_cache/
+htmlcov/
+
+# Docker volumes
+postgres_data/
+redis_data/
+chroma_data/
+
+# Models / large assets
+models/
+*.onnx
+*.pt
+*.bin
+
+# Event store / runtime data
+data/
+
+# Misc
+*.tsbuildinfo
+.vercel

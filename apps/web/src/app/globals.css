@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --aether-cyan: #00f0ff;
+  --aether-bg: #030508;
+  --aether-panel: rgba(0, 240, 255, 0.03);
+  --aether-glow: rgba(0, 240, 255, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--aether-bg);
+  color: #e0f7ff;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Scanline overlay */
+.scanlines::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* HUD panel glass */
+@layer components {
+  .hud-panel {
+    @apply relative overflow-hidden rounded-sm border border-aether-border bg-aether-panel backdrop-blur-md;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.08), inset 0 0 30px rgba(0, 240, 255, 0.02);
+  }
+
+  .hud-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--aether-cyan), transparent);
+    opacity: 0.6;
+  }
+
+  .hud-panel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-top: 1px solid var(--aether-cyan);
+    border-left: 1px solid var(--aether-cyan);
+    opacity: 0.8;
+  }
+
+  .hud-text {
+    @apply font-hud tracking-widest uppercase text-aether-cyan;
+    text-shadow: 0 0 10px var(--aether-glow);
+  }
+
+  .hud-label {
+    @apply font-mono text-[10px] tracking-[0.2em] uppercase text-aether-cyan/50;
+  }
+
+  .hud-value {
+    @apply font-mono text-sm text-aether-cyan;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+  }
+
+  .hud-btn {
+    @apply relative px-4 py-2 font-mono text-xs uppercase tracking-widest
+           border border-aether-border text-aether-cyan/80
+           transition-all duration-200 cursor-pointer;
+  }
+
+  .hud-btn:hover {
+    @apply border-aether-cyan text-aether-cyan bg-aether-cyan/10;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+  }
+
+  .hud-input {
+    @apply w-full bg-transparent border border-aether-border px-4 py-3
+           font-mono text-sm text-aether-cyan placeholder-aether-cyan/30
+           focus:outline-none focus:border-aether-cyan focus:shadow-hud
+           transition-all duration-200;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.2);
+  border-radius: 2px;
+}
+
+/* Grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
